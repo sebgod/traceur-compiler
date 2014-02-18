@@ -658,9 +658,9 @@
     return instantiator && instantiator.getUncoatedModule();
   };
 })(typeof global !== 'undefined' ? global: this);
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfills/utils", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfills/utils", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfills/utils";
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfills/utils";
   var toObject = $traceurRuntime.toObject;
   function toUint32(x) {
     return x | 0;
@@ -674,11 +674,11 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
     }
   };
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfills/ArrayIterator", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfills/ArrayIterator", function() {
   "use strict";
   var $__4;
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfills/ArrayIterator";
-  var $__5 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/src/runtime/polyfills/utils"),
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfills/ArrayIterator";
+  var $__5 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/src/runtime/polyfills/utils"),
       toObject = $__5.toObject,
       toUint32 = $__5.toUint32;
   var ARRAY_ITERATOR_KIND_KEYS = 1;
@@ -750,613 +750,9 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
     }
   };
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/events", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/node_modules/rsvp/lib/rsvp/asap", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/events";
-  var indexOf = function(callbacks, callback) {
-    for (var i = 0,
-        l = callbacks.length; i < l; i++) {
-      if (callbacks[i] === callback) {
-        return i;
-      }
-    }
-    return - 1;
-  };
-  var callbacksFor = function(object) {
-    var callbacks = object._promiseCallbacks;
-    if (!callbacks) {
-      callbacks = object._promiseCallbacks = {};
-    }
-    return callbacks;
-  };
-  var $__default = {
-    mixin: function(object) {
-      object.on = this.on;
-      object.off = this.off;
-      object.trigger = this.trigger;
-      object._promiseCallbacks = undefined;
-      return object;
-    },
-    on: function(eventName, callback) {
-      var allCallbacks = callbacksFor(this),
-          callbacks;
-      callbacks = allCallbacks[eventName];
-      if (!callbacks) {
-        callbacks = allCallbacks[eventName] = [];
-      }
-      if (indexOf(callbacks, callback) === - 1) {
-        callbacks.push(callback);
-      }
-    },
-    off: function(eventName, callback) {
-      var allCallbacks = callbacksFor(this),
-          callbacks,
-          index;
-      if (!callback) {
-        allCallbacks[eventName] = [];
-        return;
-      }
-      callbacks = allCallbacks[eventName];
-      index = indexOf(callbacks, callback);
-      if (index !== - 1) {
-        callbacks.splice(index, 1);
-      }
-    },
-    trigger: function(eventName, options) {
-      var allCallbacks = callbacksFor(this),
-          callbacks,
-          callbackTuple,
-          callback,
-          binding;
-      if (callbacks = allCallbacks[eventName]) {
-        for (var i = 0; i < callbacks.length; i++) {
-          callback = callbacks[i];
-          callback(options);
-        }
-      }
-    }
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/config", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/config";
-  var EventTarget = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/events").default;
-  var config = {instrument: false};
-  EventTarget.mixin(config);
-  function configure(name, value) {
-    if (name === 'onerror') {
-      config.on('error', value);
-      return;
-    }
-    if (arguments.length === 2) {
-      config[name] = value;
-    } else {
-      return config[name];
-    }
-  }
-  ;
-  return {
-    get config() {
-      return config;
-    },
-    get configure() {
-      return configure;
-    }
-  };
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils";
-  function objectOrFunction(x) {
-    return typeof x === "function" || (typeof x === "object" && x !== null);
-  }
-  function isFunction(x) {
-    return typeof x === "function";
-  }
-  function isNonThenable(x) {
-    return !objectOrFunction(x);
-  }
-  function isArray(x) {
-    return Object.prototype.toString.call(x) === "[object Array]";
-  }
-  var now = Date.now || function() {
-    return new Date().getTime();
-  };
-  var keysOf = Object.keys || function(object) {
-    var result = [];
-    for (var prop in object) {
-      result.push(prop);
-    }
-    return result;
-  };
-  return {
-    get objectOrFunction() {
-      return objectOrFunction;
-    },
-    get isFunction() {
-      return isFunction;
-    },
-    get isNonThenable() {
-      return isNonThenable;
-    },
-    get isArray() {
-      return isArray;
-    },
-    get now() {
-      return now;
-    },
-    get keysOf() {
-      return keysOf;
-    }
-  };
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/instrument", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/instrument";
-  var config = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/config").config;
-  var now = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils").now;
-  var $__default = function instrument(eventName, promise, child) {
-    try {
-      config.trigger(eventName, {
-        guid: promise._guidKey + promise._id,
-        eventName: eventName,
-        detail: promise._detail,
-        childGuid: child && promise._guidKey + child._id,
-        label: promise._label,
-        timeStamp: now(),
-        stack: new Error(promise._label).stack
-      });
-    } catch (error) {
-      setTimeout(function() {
-        throw error;
-      }, 0);
-    }
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/all", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/all";
-  var $__8 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isArray = $__8.isArray,
-      isNonThenable = $__8.isNonThenable;
-  var $__default = function all(entries, label) {
-    var Constructor = this;
-    return new Constructor(function(resolve, reject) {
-      if (!isArray(entries)) {
-        throw new TypeError('You must pass an array to all.');
-      }
-      var remaining = entries.length;
-      var results = new Array(remaining);
-      var entry,
-          pending = true;
-      if (remaining === 0) {
-        resolve(results);
-        return;
-      }
-      function fulfillmentAt(index) {
-        return function(value) {
-          results[index] = value;
-          if (--remaining === 0) {
-            resolve(results);
-          }
-        };
-      }
-      function onRejection(reason) {
-        remaining = 0;
-        reject(reason);
-      }
-      for (var index = 0; index < entries.length; index++) {
-        entry = entries[index];
-        if (isNonThenable(entry)) {
-          results[index] = entry;
-          if (--remaining === 0) {
-            resolve(results);
-          }
-        } else {
-          Constructor.cast(entry).then(fulfillmentAt(index), onRejection);
-        }
-      }
-    }, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/cast", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/cast";
-  var $__default = function cast(object, label) {
-    var Constructor = this;
-    if (object && typeof object === 'object' && object.constructor === Constructor) {
-      return object;
-    }
-    return new Constructor(function(resolve) {
-      resolve(object);
-    }, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/race", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/race";
-  var $__9 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isArray = $__9.isArray,
-      isFunction = $__9.isFunction,
-      isNonThenable = $__9.isNonThenable;
-  var $__default = function race(entries, label) {
-    var Constructor = this,
-        entry;
-    return new Constructor(function(resolve, reject) {
-      if (!isArray(entries)) {
-        throw new TypeError('You must pass an array to race.');
-      }
-      var pending = true;
-      function onFulfillment(value) {
-        if (pending) {
-          pending = false;
-          resolve(value);
-        }
-      }
-      function onRejection(reason) {
-        if (pending) {
-          pending = false;
-          reject(reason);
-        }
-      }
-      for (var i = 0; i < entries.length; i++) {
-        entry = entries[i];
-        if (isNonThenable(entry)) {
-          pending = false;
-          resolve(entry);
-          return;
-        } else {
-          Constructor.cast(entry).then(onFulfillment, onRejection);
-        }
-      }
-    }, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/reject", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/reject";
-  var $__default = function reject(reason, label) {
-    var Constructor = this;
-    return new Constructor(function(resolve, reject) {
-      reject(reason);
-    }, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/resolve", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/resolve";
-  var $__default = function resolve(value, label) {
-    var Constructor = this;
-    return new Constructor(function(resolve, reject) {
-      resolve(value);
-    }, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise";
-  var config = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/config").config;
-  var EventTarget = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/events").default;
-  var instrument = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/instrument").default;
-  var $__10 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      objectOrFunction = $__10.objectOrFunction,
-      isFunction = $__10.isFunction,
-      now = $__10.now;
-  var cast = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/cast").default;
-  var all = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/all").default;
-  var race = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/race").default;
-  var Resolve = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/resolve").default;
-  var Reject = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise/reject").default;
-  var guidKey = 'rsvp_' + now() + '-';
-  var counter = 0;
-  function noop() {}
-  var $__default = Promise;
-  function Promise(resolver, label) {
-    if (!isFunction(resolver)) {
-      throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
-    }
-    if (!(this instanceof Promise)) {
-      throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
-    }
-    this._id = counter++;
-    this._label = label;
-    this._subscribers = [];
-    if (config.instrument) {
-      instrument('created', this);
-    }
-    if (noop !== resolver) {
-      invokeResolver(resolver, this);
-    }
-  }
-  function invokeResolver(resolver, promise) {
-    function resolvePromise(value) {
-      resolve(promise, value);
-    }
-    function rejectPromise(reason) {
-      reject(promise, reason);
-    }
-    try {
-      resolver(resolvePromise, rejectPromise);
-    } catch (e) {
-      rejectPromise(e);
-    }
-  }
-  Promise.cast = cast;
-  Promise.all = all;
-  Promise.race = race;
-  Promise.resolve = Resolve;
-  Promise.reject = Reject;
-  var PENDING = void 0;
-  var SEALED = 0;
-  var FULFILLED = 1;
-  var REJECTED = 2;
-  function subscribe(parent, child, onFulfillment, onRejection) {
-    var subscribers = parent._subscribers;
-    var length = subscribers.length;
-    subscribers[length] = child;
-    subscribers[length + FULFILLED] = onFulfillment;
-    subscribers[length + REJECTED] = onRejection;
-  }
-  function publish(promise, settled) {
-    var child,
-        callback,
-        subscribers = promise._subscribers,
-        detail = promise._detail;
-    if (config.instrument) {
-      instrument(settled === FULFILLED ? 'fulfilled': 'rejected', promise);
-    }
-    for (var i = 0; i < subscribers.length; i += 3) {
-      child = subscribers[i];
-      callback = subscribers[i + settled];
-      invokeCallback(settled, child, callback, detail);
-    }
-    promise._subscribers = null;
-  }
-  Promise.prototype = {
-    constructor: Promise,
-    _id: undefined,
-    _guidKey: guidKey,
-    _label: undefined,
-    _state: undefined,
-    _detail: undefined,
-    _subscribers: undefined,
-    _onerror: function(reason) {
-      config.trigger('error', reason);
-    },
-    then: function(onFulfillment, onRejection, label) {
-      var promise = this;
-      this._onerror = null;
-      var thenPromise = new this.constructor(noop, label);
-      if (this._state) {
-        var callbacks = arguments;
-        config.async(function invokePromiseCallback() {
-          invokeCallback(promise._state, thenPromise, callbacks[promise._state - 1], promise._detail);
-        });
-      } else {
-        subscribe(this, thenPromise, onFulfillment, onRejection);
-      }
-      if (config.instrument) {
-        instrument('chained', promise, thenPromise);
-      }
-      return thenPromise;
-    },
-    'catch': function(onRejection, label) {
-      return this.then(null, onRejection, label);
-    },
-    'finally': function(callback, label) {
-      var constructor = this.constructor;
-      return this.then(function(value) {
-        return constructor.cast(callback()).then(function() {
-          return value;
-        });
-      }, function(reason) {
-        return constructor.cast(callback()).then(function() {
-          throw reason;
-        });
-      }, label);
-    }
-  };
-  function invokeCallback(settled, promise, callback, detail) {
-    var hasCallback = isFunction(callback),
-        value,
-        error,
-        succeeded,
-        failed;
-    if (hasCallback) {
-      try {
-        value = callback(detail);
-        succeeded = true;
-      } catch (e) {
-        failed = true;
-        error = e;
-      }
-    } else {
-      value = detail;
-      succeeded = true;
-    }
-    if (handleThenable(promise, value)) {
-      return;
-    } else if (hasCallback && succeeded) {
-      resolve(promise, value);
-    } else if (failed) {
-      reject(promise, error);
-    } else if (settled === FULFILLED) {
-      resolve(promise, value);
-    } else if (settled === REJECTED) {
-      reject(promise, value);
-    }
-  }
-  function handleThenable(promise, value) {
-    var then = null,
-        resolved;
-    try {
-      if (promise === value) {
-        throw new TypeError("A promises callback cannot return that same promise.");
-      }
-      if (objectOrFunction(value)) {
-        then = value.then;
-        if (isFunction(then)) {
-          then.call(value, function(val) {
-            if (resolved) {
-              return true;
-            }
-            resolved = true;
-            if (value !== val) {
-              resolve(promise, val);
-            } else {
-              fulfill(promise, val);
-            }
-          }, function(val) {
-            if (resolved) {
-              return true;
-            }
-            resolved = true;
-            reject(promise, val);
-          }, 'derived from: ' + (promise._label || ' unknown promise'));
-          return true;
-        }
-      }
-    } catch (error) {
-      if (resolved) {
-        return true;
-      }
-      reject(promise, error);
-      return true;
-    }
-    return false;
-  }
-  function resolve(promise, value) {
-    if (promise === value) {
-      fulfill(promise, value);
-    } else if (!handleThenable(promise, value)) {
-      fulfill(promise, value);
-    }
-  }
-  function fulfill(promise, value) {
-    if (promise._state !== PENDING) {
-      return;
-    }
-    promise._state = SEALED;
-    promise._detail = value;
-    config.async(publishFulfillment, promise);
-  }
-  function reject(promise, reason) {
-    if (promise._state !== PENDING) {
-      return;
-    }
-    promise._state = SEALED;
-    promise._detail = reason;
-    config.async(publishRejection, promise);
-  }
-  function publishFulfillment(promise) {
-    publish(promise, promise._state = FULFILLED);
-  }
-  function publishRejection(promise) {
-    if (promise._onerror) {
-      promise._onerror(promise._detail);
-    }
-    publish(promise, promise._state = REJECTED);
-  }
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__default = function all(array, label) {
-    return Promise.all(array, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all_settled", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all_settled";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__12 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isArray = $__12.isArray,
-      isNonThenable = $__12.isNonThenable;
-  var $__default = function allSettled(entries, label) {
-    return new Promise(function(resolve, reject) {
-      if (!isArray(entries)) {
-        throw new TypeError('You must pass an array to allSettled.');
-      }
-      var remaining = entries.length;
-      var entry;
-      if (remaining === 0) {
-        resolve([]);
-        return;
-      }
-      var results = new Array(remaining);
-      function fulfilledResolver(index) {
-        return function(value) {
-          resolveAll(index, fulfilled(value));
-        };
-      }
-      function rejectedResolver(index) {
-        return function(reason) {
-          resolveAll(index, rejected(reason));
-        };
-      }
-      function resolveAll(index, value) {
-        results[index] = value;
-        if (--remaining === 0) {
-          resolve(results);
-        }
-      }
-      for (var index = 0; index < entries.length; index++) {
-        entry = entries[index];
-        if (isNonThenable(entry)) {
-          resolveAll(index, fulfilled(entry));
-        } else {
-          Promise.cast(entry).then(fulfilledResolver(index), rejectedResolver(index));
-        }
-      }
-    }, label);
-  };
-  function fulfilled(value) {
-    return {
-      state: 'fulfilled',
-      value: value
-    };
-  }
-  function rejected(reason) {
-    return {
-      state: 'rejected',
-      reason: reason
-    };
-  }
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/asap", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/asap";
+  var __moduleName = "traceur-runtime@0.0.24/node_modules/rsvp/lib/rsvp/asap";
   var $__default = function asap(callback, arg) {
     var length = queue.push([callback, arg]);
     if (length === 1) {
@@ -1406,313 +802,10 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/
       return $__default;
     }};
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/defer", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfills/Promise", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/defer";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__default = function defer(label) {
-    var deferred = {};
-    deferred.promise = new Promise(function(resolve, reject) {
-      deferred.resolve = resolve;
-      deferred.reject = reject;
-    }, label);
-    return deferred;
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/map", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/map";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var all = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all").default;
-  var $__14 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isArray = $__14.isArray,
-      isFunction = $__14.isFunction;
-  var $__default = function map(promises, mapFn, label) {
-    return all(promises, label).then(function(results) {
-      if (!isArray(promises)) {
-        throw new TypeError('You must pass an array to map.');
-      }
-      if (!isFunction(mapFn)) {
-        throw new TypeError("You must pass a function to map's second argument.");
-      }
-      var resultLen = results.length,
-          mappedResults = [],
-          i;
-      for (i = 0; i < resultLen; i++) {
-        mappedResults.push(mapFn(results[i]));
-      }
-      return all(mappedResults, label);
-    });
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/filter", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/filter";
-  var all = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all").default;
-  var map = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/map").default;
-  var $__15 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isFunction = $__15.isFunction,
-      isArray = $__15.isArray;
-  function filter(promises, filterFn, label) {
-    return all(promises, label).then(function(values) {
-      if (!isArray(promises)) {
-        throw new TypeError('You must pass an array to filter.');
-      }
-      if (!isFunction(filterFn)) {
-        throw new TypeError("You must pass a function to filter's second argument.");
-      }
-      return map(promises, filterFn, label).then(function(filterResults) {
-        var i,
-            valuesLen = values.length,
-            filtered = [];
-        for (i = 0; i < valuesLen; i++) {
-          if (filterResults[i]) filtered.push(values[i]);
-        }
-        return filtered;
-      });
-    });
-  }
-  var $__default = filter;
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/hash", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/hash";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__16 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/utils"),
-      isNonThenable = $__16.isNonThenable,
-      keysOf = $__16.keysOf;
-  var $__default = function hash(object, label) {
-    return new Promise(function(resolve, reject) {
-      var results = {};
-      var keys = keysOf(object);
-      var remaining = keys.length;
-      var entry,
-          property;
-      if (remaining === 0) {
-        resolve(results);
-        return;
-      }
-      function fulfilledTo(property) {
-        return function(value) {
-          results[property] = value;
-          if (--remaining === 0) {
-            resolve(results);
-          }
-        };
-      }
-      function onRejection(reason) {
-        remaining = 0;
-        reject(reason);
-      }
-      for (var i = 0; i < keys.length; i++) {
-        property = keys[i];
-        entry = object[property];
-        if (isNonThenable(entry)) {
-          results[property] = entry;
-          if (--remaining === 0) {
-            resolve(results);
-          }
-        } else {
-          Promise.cast(entry).then(fulfilledTo(property), onRejection);
-        }
-      }
-    });
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/node", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/node";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var slice = Array.prototype.slice;
-  function makeNodeCallbackFor(resolve, reject) {
-    return function(error, value) {
-      if (error) {
-        reject(error);
-      } else if (arguments.length > 2) {
-        resolve(slice.call(arguments, 1));
-      } else {
-        resolve(value);
-      }
-    };
-  }
-  var $__default = function denodeify(nodeFunc, binding) {
-    return function() {
-      var nodeArgs = slice.call(arguments),
-          resolve,
-          reject;
-      var thisArg = this || binding;
-      return new Promise(function(resolve, reject) {
-        Promise.all(nodeArgs).then(function(nodeArgs) {
-          try {
-            nodeArgs.push(makeNodeCallbackFor(resolve, reject));
-            nodeFunc.apply(thisArg, nodeArgs);
-          } catch (e) {
-            reject(e);
-          }
-        });
-      });
-    };
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/race", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/race";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__default = function race(array, label) {
-    return Promise.race(array, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/reject", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/reject";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__default = function reject(reason, label) {
-    return Promise.reject(reason, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/resolve", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/resolve";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var $__default = function resolve(value, label) {
-    return Promise.resolve(value, label);
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/rethrow", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/rethrow";
-  var $__default = function rethrow(reason) {
-    setTimeout(function() {
-      throw reason;
-    });
-    throw reason;
-  };
-  return {get default() {
-      return $__default;
-    }};
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/promise").default;
-  var EventTarget = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/events").default;
-  var denodeify = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/node").default;
-  var all = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all").default;
-  var allSettled = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/all_settled").default;
-  var race = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/race").default;
-  var hash = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/hash").default;
-  var rethrow = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/rethrow").default;
-  var defer = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/defer").default;
-  var $__21 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/config"),
-      config = $__21.config,
-      configure = $__21.configure;
-  var map = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/map").default;
-  var resolve = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/resolve").default;
-  var reject = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/reject").default;
-  var filter = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/filter").default;
-  var asap = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp/asap").default;
-  config.async = asap;
-  function async(callback, arg) {
-    config.async(callback, arg);
-  }
-  function on() {
-    config.on.apply(config, arguments);
-  }
-  function off() {
-    config.off.apply(config, arguments);
-  }
-  if (typeof window !== 'undefined' && typeof window.__PROMISE_INSTRUMENTATION__ === 'object') {
-    var callbacks = window.__PROMISE_INSTRUMENTATION__;
-    configure('instrument', true);
-    for (var eventName in callbacks) {
-      if (callbacks.hasOwnProperty(eventName)) {
-        on(eventName, callbacks[eventName]);
-      }
-    }
-  }
-  ;
-  return {
-    get Promise() {
-      return Promise;
-    },
-    get EventTarget() {
-      return EventTarget;
-    },
-    get all() {
-      return all;
-    },
-    get allSettled() {
-      return allSettled;
-    },
-    get race() {
-      return race;
-    },
-    get hash() {
-      return hash;
-    },
-    get rethrow() {
-      return rethrow;
-    },
-    get defer() {
-      return defer;
-    },
-    get denodeify() {
-      return denodeify;
-    },
-    get configure() {
-      return configure;
-    },
-    get on() {
-      return on;
-    },
-    get off() {
-      return off;
-    },
-    get resolve() {
-      return resolve;
-    },
-    get reject() {
-      return reject;
-    },
-    get async() {
-      return async;
-    },
-    get map() {
-      return map;
-    },
-    get filter() {
-      return filter;
-    }
-  };
-});
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfills/Promise", function() {
-  "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfills/Promise";
-  var async = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/node_modules/rsvp/lib/rsvp").async;
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfills/Promise";
+  var async = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/node_modules/rsvp/lib/rsvp/asap").default;
   function isPromise(x) {
     return x && typeof x === 'object' && x.status_ !== undefined;
   }
@@ -1749,14 +842,14 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
     return result;
   }
   var Promise = function Promise(resolver) {
-    var $__22 = this;
+    var $__6 = this;
     this.status_ = 'pending';
     this.onResolve_ = [];
     this.onReject_ = [];
     resolver((function(x) {
-      promiseResolve($__22, x);
+      promiseResolve($__6, x);
     }), (function(r) {
-      promiseReject($__22, r);
+      promiseReject($__6, r);
     }));
   };
   ($traceurRuntime.createClass)(Promise, {
@@ -1768,11 +861,11 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
         return x;
       });
       var onReject = arguments[1];
-      var $__22 = this;
+      var $__6 = this;
       var constructor = this.constructor;
       return chain(this, (function(x) {
         x = promiseCoerce(constructor, x);
-        return x === $__22 ? onReject(new TypeError): isPromise(x) ? x.then(onResolve, onReject): onResolve(x);
+        return x === $__6 ? onReject(new TypeError): isPromise(x) ? x.then(onResolve, onReject): onResolve(x);
       }), onReject);
     }
   }, {
@@ -1883,9 +976,9 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
       return Promise;
     }};
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfills/String", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfills/String", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfills/String";
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfills/String";
   var $toString = Object.prototype.toString;
   var $indexOf = String.prototype.indexOf;
   var $lastIndexOf = String.prototype.lastIndexOf;
@@ -2052,22 +1145,22 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
     }
   };
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfills/polyfills", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfills/polyfills", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfills/polyfills";
-  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/src/runtime/polyfills/Promise").Promise;
-  var $__25 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/src/runtime/polyfills/String"),
-      codePointAt = $__25.codePointAt,
-      contains = $__25.contains,
-      endsWith = $__25.endsWith,
-      fromCodePoint = $__25.fromCodePoint,
-      repeat = $__25.repeat,
-      raw = $__25.raw,
-      startsWith = $__25.startsWith;
-  var $__25 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/src/runtime/polyfills/ArrayIterator"),
-      entries = $__25.entries,
-      keys = $__25.keys,
-      values = $__25.values;
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfills/polyfills";
+  var Promise = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/src/runtime/polyfills/Promise").Promise;
+  var $__9 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/src/runtime/polyfills/String"),
+      codePointAt = $__9.codePointAt,
+      contains = $__9.contains,
+      endsWith = $__9.endsWith,
+      fromCodePoint = $__9.fromCodePoint,
+      repeat = $__9.repeat,
+      raw = $__9.raw,
+      startsWith = $__9.startsWith;
+  var $__9 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/src/runtime/polyfills/ArrayIterator"),
+      entries = $__9.entries,
+      keys = $__9.keys,
+      values = $__9.values;
   function maybeDefineMethod(object, name, value) {
     if (!(name in object)) {
       Object.defineProperty(object, name, {
@@ -2116,10 +1209,10 @@ $traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/p
   };
   return {};
 });
-$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.23/src/runtime/polyfill-import", function() {
+$traceurRuntime.ModuleStore.registerModule("traceur-runtime@0.0.24/src/runtime/polyfill-import", function() {
   "use strict";
-  var __moduleName = "traceur-runtime@0.0.23/src/runtime/polyfill-import";
-  var $__27 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.23/src/runtime/polyfills/polyfills");
+  var __moduleName = "traceur-runtime@0.0.24/src/runtime/polyfill-import";
+  var $__11 = $traceurRuntime.getModuleImpl("traceur-runtime@0.0.24/src/runtime/polyfills/polyfills");
   return {};
 });
-System.get("traceur-runtime@0.0.23/src/runtime/polyfill-import" + '');
+System.get("traceur-runtime@0.0.24/src/runtime/polyfill-import" + '');
