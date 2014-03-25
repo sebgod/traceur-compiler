@@ -256,16 +256,14 @@ export class ArrowFunctionExpression extends ParseTree {
   }
 }
 
-var AWAIT_STATEMENT = ParseTreeType.AWAIT_STATEMENT;
-export class AwaitStatement extends ParseTree {
+var AWAIT_EXPRESSION = ParseTreeType.AWAIT_EXPRESSION;
+export class AwaitExpression extends ParseTree {
   /**
    * @param {SourceRange} location
-   * @param {IdentifierToken} identifier
    * @param {ParseTree} expression
    */
-  constructor(location, identifier, expression) {
+  constructor(location, expression) {
     this.location = location;
-    this.identifier = identifier;
     this.expression = expression;
   }
 
@@ -273,21 +271,21 @@ export class AwaitStatement extends ParseTree {
    * @param {ParseTreeTransformer} transformer
    */
   transform(transformer) {
-    return transformer.transformAwaitStatement(this);
+    return transformer.transformAwaitExpression(this);
   }
 
   /**
    * @param {ParseTreeVisitor} visitor
    */
   visit(visitor) {
-    visitor.visitAwaitStatement(this);
+    visitor.visitAwaitExpression(this);
   }
 
   /**
    * @type {ParseTreeType}
    */
   get type() {
-    return AWAIT_STATEMENT;
+    return AWAIT_EXPRESSION;
   }
 }
 
@@ -1503,16 +1501,16 @@ export class FunctionDeclaration extends ParseTree {
   /**
    * @param {SourceRange} location
    * @param {BindingIdentifier} name
-   * @param {boolean} isGenerator
+   * @param {Token} functionKind
    * @param {FormalParameterList} formalParameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, name, isGenerator, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, name, functionKind, formalParameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.name = name;
-    this.isGenerator = isGenerator;
+    this.functionKind = functionKind;
     this.formalParameterList = formalParameterList;
     this.typeAnnotation = typeAnnotation;
     this.annotations = annotations;
@@ -1546,16 +1544,16 @@ export class FunctionExpression extends ParseTree {
   /**
    * @param {SourceRange} location
    * @param {BindingIdentifier} name
-   * @param {boolean} isGenerator
+   * @param {Token} functionKind
    * @param {FormalParameterList} formalParameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, name, isGenerator, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, name, functionKind, formalParameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.name = name;
-    this.isGenerator = isGenerator;
+    this.functionKind = functionKind;
     this.formalParameterList = formalParameterList;
     this.typeAnnotation = typeAnnotation;
     this.annotations = annotations;
@@ -2452,17 +2450,17 @@ export class PropertyMethodAssignment extends ParseTree {
   /**
    * @param {SourceRange} location
    * @param {boolean} isStatic
-   * @param {boolean} isGenerator
+   * @param {Token} functionKind
    * @param {ParseTree} name
    * @param {FormalParameterList} formalParameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, isStatic, isGenerator, name, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, isStatic, functionKind, name, formalParameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.isStatic = isStatic;
-    this.isGenerator = isGenerator;
+    this.functionKind = functionKind;
     this.name = name;
     this.formalParameterList = formalParameterList;
     this.typeAnnotation = typeAnnotation;

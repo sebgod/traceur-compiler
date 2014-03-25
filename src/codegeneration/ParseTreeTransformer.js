@@ -24,7 +24,7 @@ import {
   ArrayLiteralExpression,
   ArrayPattern,
   ArrowFunctionExpression,
-  AwaitStatement,
+  AwaitExpression,
   BinaryOperator,
   BindingElement,
   BindingIdentifier,
@@ -190,12 +190,12 @@ export class ParseTreeTransformer {
     }
     return new ArrowFunctionExpression(tree.location, formalParameters, functionBody);
   }
-  transformAwaitStatement(tree) {
+  transformAwaitExpression(tree) {
     var expression = this.transformAny(tree.expression);
     if (expression === tree.expression) {
       return tree;
     }
-    return new AwaitStatement(tree.location, tree.identifier, expression);
+    return new AwaitExpression(tree.location, expression);
   }
   transformBinaryOperator(tree) {
     var left = this.transformAny(tree.left);
@@ -448,7 +448,7 @@ export class ParseTreeTransformer {
     if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new FunctionDeclaration(tree.location, name, tree.isGenerator, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new FunctionDeclaration(tree.location, name, tree.functionKind, formalParameterList, typeAnnotation, annotations, functionBody);
   }
   transformFunctionExpression(tree) {
     var name = this.transformAny(tree.name);
@@ -459,7 +459,7 @@ export class ParseTreeTransformer {
     if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new FunctionExpression(tree.location, name, tree.isGenerator, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new FunctionExpression(tree.location, name, tree.functionKind, formalParameterList, typeAnnotation, annotations, functionBody);
   }
   transformGeneratorComprehension(tree) {
     var comprehensionList = this.transformList(tree.comprehensionList);
@@ -632,7 +632,7 @@ export class ParseTreeTransformer {
     if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new PropertyMethodAssignment(tree.location, tree.isStatic, tree.isGenerator, name, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new PropertyMethodAssignment(tree.location, tree.isStatic, tree.functionKind, name, formalParameterList, typeAnnotation, annotations, functionBody);
   }
   transformPropertyNameAssignment(tree) {
     var name = this.transformAny(tree.name);
