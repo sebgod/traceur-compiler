@@ -225,12 +225,12 @@ var ARROW_FUNCTION_EXPRESSION = ParseTreeType.ARROW_FUNCTION_EXPRESSION;
 export class ArrowFunctionExpression extends ParseTree {
   /**
    * @param {SourceRange} location
-   * @param {FormalParameterList} formalParameters
+   * @param {FormalParameterList} parameterList
    * @param {ParseTree} functionBody
    */
-  constructor(location, formalParameters, functionBody) {
+  constructor(location, parameterList, functionBody) {
     this.location = location;
-    this.formalParameters = formalParameters;
+    this.parameterList = parameterList;
     this.functionBody = functionBody;
   }
 
@@ -1502,16 +1502,16 @@ export class FunctionDeclaration extends ParseTree {
    * @param {SourceRange} location
    * @param {BindingIdentifier} name
    * @param {Token} functionKind
-   * @param {FormalParameterList} formalParameterList
+   * @param {FormalParameterList} parameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, name, functionKind, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, name, functionKind, parameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.name = name;
     this.functionKind = functionKind;
-    this.formalParameterList = formalParameterList;
+    this.parameterList = parameterList;
     this.typeAnnotation = typeAnnotation;
     this.annotations = annotations;
     this.functionBody = functionBody;
@@ -1545,16 +1545,16 @@ export class FunctionExpression extends ParseTree {
    * @param {SourceRange} location
    * @param {BindingIdentifier} name
    * @param {Token} functionKind
-   * @param {FormalParameterList} formalParameterList
+   * @param {FormalParameterList} parameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, name, functionKind, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, name, functionKind, parameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.name = name;
     this.functionKind = functionKind;
-    this.formalParameterList = formalParameterList;
+    this.parameterList = parameterList;
     this.typeAnnotation = typeAnnotation;
     this.annotations = annotations;
     this.functionBody = functionBody;
@@ -2452,17 +2452,17 @@ export class PropertyMethodAssignment extends ParseTree {
    * @param {boolean} isStatic
    * @param {Token} functionKind
    * @param {ParseTree} name
-   * @param {FormalParameterList} formalParameterList
+   * @param {FormalParameterList} parameterList
    * @param {ParseTree} typeAnnotation
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} functionBody
    */
-  constructor(location, isStatic, functionKind, name, formalParameterList, typeAnnotation, annotations, functionBody) {
+  constructor(location, isStatic, functionKind, name, parameterList, typeAnnotation, annotations, functionBody) {
     this.location = location;
     this.isStatic = isStatic;
     this.functionKind = functionKind;
     this.name = name;
-    this.formalParameterList = formalParameterList;
+    this.parameterList = parameterList;
     this.typeAnnotation = typeAnnotation;
     this.annotations = annotations;
     this.functionBody = functionBody;
@@ -2630,15 +2630,15 @@ export class SetAccessor extends ParseTree {
    * @param {SourceRange} location
    * @param {boolean} isStatic
    * @param {ParseTree} name
-   * @param {FormalParameter} parameter
+   * @param {FormalParameterList} parameterList
    * @param {Array.<ParseTree>} annotations
    * @param {FunctionBody} body
    */
-  constructor(location, isStatic, name, parameter, annotations, body) {
+  constructor(location, isStatic, name, parameterList, annotations, body) {
     this.location = location;
     this.isStatic = isStatic;
     this.name = name;
-    this.parameter = parameter;
+    this.parameterList = parameterList;
     this.annotations = annotations;
     this.body = body;
   }

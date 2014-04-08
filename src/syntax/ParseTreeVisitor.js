@@ -55,7 +55,7 @@ export class ParseTreeVisitor {
     this.visitList(tree.elements);
   }
   visitArrowFunctionExpression(tree) {
-    this.visitAny(tree.formalParameters);
+    this.visitAny(tree.parameterList);
     this.visitAny(tree.functionBody);
   }
   visitAwaitExpression(tree) {
@@ -186,14 +186,14 @@ export class ParseTreeVisitor {
   }
   visitFunctionDeclaration(tree) {
     this.visitAny(tree.name);
-    this.visitAny(tree.formalParameterList);
+    this.visitAny(tree.parameterList);
     this.visitAny(tree.typeAnnotation);
     this.visitList(tree.annotations);
     this.visitAny(tree.functionBody);
   }
   visitFunctionExpression(tree) {
     this.visitAny(tree.name);
-    this.visitAny(tree.formalParameterList);
+    this.visitAny(tree.parameterList);
     this.visitAny(tree.typeAnnotation);
     this.visitList(tree.annotations);
     this.visitAny(tree.functionBody);
@@ -280,7 +280,7 @@ export class ParseTreeVisitor {
   }
   visitPropertyMethodAssignment(tree) {
     this.visitAny(tree.name);
-    this.visitAny(tree.formalParameterList);
+    this.visitAny(tree.parameterList);
     this.visitAny(tree.typeAnnotation);
     this.visitList(tree.annotations);
     this.visitAny(tree.functionBody);
@@ -299,7 +299,7 @@ export class ParseTreeVisitor {
   }
   visitSetAccessor(tree) {
     this.visitAny(tree.name);
-    this.visitAny(tree.parameter);
+    this.visitAny(tree.parameterList);
     this.visitList(tree.annotations);
     this.visitAny(tree.body);
   }

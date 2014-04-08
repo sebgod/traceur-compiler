@@ -183,12 +183,12 @@ export class ParseTreeTransformer {
     return new ArrayPattern(tree.location, elements);
   }
   transformArrowFunctionExpression(tree) {
-    var formalParameters = this.transformAny(tree.formalParameters);
+    var parameterList = this.transformAny(tree.parameterList);
     var functionBody = this.transformAny(tree.functionBody);
-    if (formalParameters === tree.formalParameters && functionBody === tree.functionBody) {
+    if (parameterList === tree.parameterList && functionBody === tree.functionBody) {
       return tree;
     }
-    return new ArrowFunctionExpression(tree.location, formalParameters, functionBody);
+    return new ArrowFunctionExpression(tree.location, parameterList, functionBody);
   }
   transformAwaitExpression(tree) {
     var expression = this.transformAny(tree.expression);
@@ -441,25 +441,25 @@ export class ParseTreeTransformer {
   }
   transformFunctionDeclaration(tree) {
     var name = this.transformAny(tree.name);
-    var formalParameterList = this.transformAny(tree.formalParameterList);
+    var parameterList = this.transformAny(tree.parameterList);
     var typeAnnotation = this.transformAny(tree.typeAnnotation);
     var annotations = this.transformList(tree.annotations);
     var functionBody = this.transformAny(tree.functionBody);
-    if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
+    if (name === tree.name && parameterList === tree.parameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new FunctionDeclaration(tree.location, name, tree.functionKind, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new FunctionDeclaration(tree.location, name, tree.functionKind, parameterList, typeAnnotation, annotations, functionBody);
   }
   transformFunctionExpression(tree) {
     var name = this.transformAny(tree.name);
-    var formalParameterList = this.transformAny(tree.formalParameterList);
+    var parameterList = this.transformAny(tree.parameterList);
     var typeAnnotation = this.transformAny(tree.typeAnnotation);
     var annotations = this.transformList(tree.annotations);
     var functionBody = this.transformAny(tree.functionBody);
-    if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
+    if (name === tree.name && parameterList === tree.parameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new FunctionExpression(tree.location, name, tree.functionKind, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new FunctionExpression(tree.location, name, tree.functionKind, parameterList, typeAnnotation, annotations, functionBody);
   }
   transformGeneratorComprehension(tree) {
     var comprehensionList = this.transformList(tree.comprehensionList);
@@ -625,14 +625,14 @@ export class ParseTreeTransformer {
   }
   transformPropertyMethodAssignment(tree) {
     var name = this.transformAny(tree.name);
-    var formalParameterList = this.transformAny(tree.formalParameterList);
+    var parameterList = this.transformAny(tree.parameterList);
     var typeAnnotation = this.transformAny(tree.typeAnnotation);
     var annotations = this.transformList(tree.annotations);
     var functionBody = this.transformAny(tree.functionBody);
-    if (name === tree.name && formalParameterList === tree.formalParameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
+    if (name === tree.name && parameterList === tree.parameterList && typeAnnotation === tree.typeAnnotation && annotations === tree.annotations && functionBody === tree.functionBody) {
       return tree;
     }
-    return new PropertyMethodAssignment(tree.location, tree.isStatic, tree.functionKind, name, formalParameterList, typeAnnotation, annotations, functionBody);
+    return new PropertyMethodAssignment(tree.location, tree.isStatic, tree.functionKind, name, parameterList, typeAnnotation, annotations, functionBody);
   }
   transformPropertyNameAssignment(tree) {
     var name = this.transformAny(tree.name);
@@ -661,13 +661,13 @@ export class ParseTreeTransformer {
   }
   transformSetAccessor(tree) {
     var name = this.transformAny(tree.name);
-    var parameter = this.transformAny(tree.parameter);
+    var parameterList = this.transformAny(tree.parameterList);
     var annotations = this.transformList(tree.annotations);
     var body = this.transformAny(tree.body);
-    if (name === tree.name && parameter === tree.parameter && annotations === tree.annotations && body === tree.body) {
+    if (name === tree.name && parameterList === tree.parameterList && annotations === tree.annotations && body === tree.body) {
       return tree;
     }
-    return new SetAccessor(tree.location, tree.isStatic, name, parameter, annotations, body);
+    return new SetAccessor(tree.location, tree.isStatic, name, parameterList, annotations, body);
   }
   transformSpreadExpression(tree) {
     var expression = this.transformAny(tree.expression);
