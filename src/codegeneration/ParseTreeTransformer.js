@@ -207,11 +207,11 @@ export class ParseTreeTransformer {
   }
   transformBindingElement(tree) {
     var binding = this.transformAny(tree.binding);
-    var initialiser = this.transformAny(tree.initialiser);
-    if (binding === tree.binding && initialiser === tree.initialiser) {
+    var initializer = this.transformAny(tree.initializer);
+    if (binding === tree.binding && initializer === tree.initializer) {
       return tree;
     }
-    return new BindingElement(tree.location, binding, initialiser);
+    return new BindingElement(tree.location, binding, initializer);
   }
   transformBindingIdentifier(tree) {
     return tree;
@@ -319,11 +319,11 @@ export class ParseTreeTransformer {
     return new CoverFormals(tree.location, expressions);
   }
   transformCoverInitialisedName(tree) {
-    var initialiser = this.transformAny(tree.initialiser);
-    if (initialiser === tree.initialiser) {
+    var initializer = this.transformAny(tree.initializer);
+    if (initializer === tree.initializer) {
       return tree;
     }
-    return new CoverInitialisedName(tree.location, tree.name, tree.equalToken, initialiser);
+    return new CoverInitialisedName(tree.location, tree.name, tree.equalToken, initializer);
   }
   transformDebuggerStatement(tree) {
     return tree;
@@ -389,32 +389,32 @@ export class ParseTreeTransformer {
     return new Finally(tree.location, block);
   }
   transformForInStatement(tree) {
-    var initialiser = this.transformAny(tree.initialiser);
+    var initializer = this.transformAny(tree.initializer);
     var collection = this.transformAny(tree.collection);
     var body = this.transformAny(tree.body);
-    if (initialiser === tree.initialiser && collection === tree.collection && body === tree.body) {
+    if (initializer === tree.initializer && collection === tree.collection && body === tree.body) {
       return tree;
     }
-    return new ForInStatement(tree.location, initialiser, collection, body);
+    return new ForInStatement(tree.location, initializer, collection, body);
   }
   transformForOfStatement(tree) {
-    var initialiser = this.transformAny(tree.initialiser);
+    var initializer = this.transformAny(tree.initializer);
     var collection = this.transformAny(tree.collection);
     var body = this.transformAny(tree.body);
-    if (initialiser === tree.initialiser && collection === tree.collection && body === tree.body) {
+    if (initializer === tree.initializer && collection === tree.collection && body === tree.body) {
       return tree;
     }
-    return new ForOfStatement(tree.location, initialiser, collection, body);
+    return new ForOfStatement(tree.location, initializer, collection, body);
   }
   transformForStatement(tree) {
-    var initialiser = this.transformAny(tree.initialiser);
+    var initializer = this.transformAny(tree.initializer);
     var condition = this.transformAny(tree.condition);
     var increment = this.transformAny(tree.increment);
     var body = this.transformAny(tree.body);
-    if (initialiser === tree.initialiser && condition === tree.condition && increment === tree.increment && body === tree.body) {
+    if (initializer === tree.initializer && condition === tree.condition && increment === tree.increment && body === tree.body) {
       return tree;
     }
-    return new ForStatement(tree.location, initialiser, condition, increment, body);
+    return new ForStatement(tree.location, initializer, condition, increment, body);
   }
   transformFormalParameter(tree) {
     var parameter = this.transformAny(tree.parameter);
@@ -751,11 +751,11 @@ export class ParseTreeTransformer {
   transformVariableDeclaration(tree) {
     var lvalue = this.transformAny(tree.lvalue);
     var typeAnnotation = this.transformAny(tree.typeAnnotation);
-    var initialiser = this.transformAny(tree.initialiser);
-    if (lvalue === tree.lvalue && typeAnnotation === tree.typeAnnotation && initialiser === tree.initialiser) {
+    var initializer = this.transformAny(tree.initializer);
+    if (lvalue === tree.lvalue && typeAnnotation === tree.typeAnnotation && initializer === tree.initializer) {
       return tree;
     }
-    return new VariableDeclaration(tree.location, lvalue, typeAnnotation, initialiser);
+    return new VariableDeclaration(tree.location, lvalue, typeAnnotation, initializer);
   }
   transformVariableDeclarationList(tree) {
     var declarations = this.transformList(tree.declarations);

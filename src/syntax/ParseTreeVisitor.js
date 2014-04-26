@@ -67,7 +67,7 @@ export class ParseTreeVisitor {
   }
   visitBindingElement(tree) {
     this.visitAny(tree.binding);
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
   }
   visitBindingIdentifier(tree) {
   }
@@ -124,7 +124,7 @@ export class ParseTreeVisitor {
     this.visitList(tree.expressions);
   }
   visitCoverInitialisedName(tree) {
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
   }
   visitDebuggerStatement(tree) {
   }
@@ -158,17 +158,17 @@ export class ParseTreeVisitor {
     this.visitAny(tree.block);
   }
   visitForInStatement(tree) {
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
     this.visitAny(tree.collection);
     this.visitAny(tree.body);
   }
   visitForOfStatement(tree) {
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
     this.visitAny(tree.collection);
     this.visitAny(tree.body);
   }
   visitForStatement(tree) {
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
     this.visitAny(tree.condition);
     this.visitAny(tree.increment);
     this.visitAny(tree.body);
@@ -345,7 +345,7 @@ export class ParseTreeVisitor {
   visitVariableDeclaration(tree) {
     this.visitAny(tree.lvalue);
     this.visitAny(tree.typeAnnotation);
-    this.visitAny(tree.initialiser);
+    this.visitAny(tree.initializer);
   }
   visitVariableDeclarationList(tree) {
     this.visitList(tree.declarations);

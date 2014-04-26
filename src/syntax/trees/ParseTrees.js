@@ -331,12 +331,12 @@ export class BindingElement extends ParseTree {
   /**
    * @param {SourceRange} location
    * @param {BindingIdentifier|ObjectPattern|ArrayPattern} binding
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    */
-  constructor(location, binding, initialiser) {
+  constructor(location, binding, initializer) {
     this.location = location;
     this.binding = binding;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
   }
 
   /**
@@ -886,13 +886,13 @@ export class CoverInitialisedName extends ParseTree {
    * @param {SourceRange} location
    * @param {Token} name
    * @param {Token} equalToken
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    */
-  constructor(location, name, equalToken, initialiser) {
+  constructor(location, name, equalToken, initializer) {
     this.location = location;
     this.name = name;
     this.equalToken = equalToken;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
   }
 
   /**
@@ -1284,13 +1284,13 @@ var FOR_IN_STATEMENT = ParseTreeType.FOR_IN_STATEMENT;
 export class ForInStatement extends ParseTree {
   /**
    * @param {SourceRange} location
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    * @param {ParseTree} collection
    * @param {ParseTree} body
    */
-  constructor(location, initialiser, collection, body) {
+  constructor(location, initializer, collection, body) {
     this.location = location;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
     this.collection = collection;
     this.body = body;
   }
@@ -1321,13 +1321,13 @@ var FOR_OF_STATEMENT = ParseTreeType.FOR_OF_STATEMENT;
 export class ForOfStatement extends ParseTree {
   /**
    * @param {SourceRange} location
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    * @param {ParseTree} collection
    * @param {ParseTree} body
    */
-  constructor(location, initialiser, collection, body) {
+  constructor(location, initializer, collection, body) {
     this.location = location;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
     this.collection = collection;
     this.body = body;
   }
@@ -1358,14 +1358,14 @@ var FOR_STATEMENT = ParseTreeType.FOR_STATEMENT;
 export class ForStatement extends ParseTree {
   /**
    * @param {SourceRange} location
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    * @param {ParseTree} condition
    * @param {ParseTree} increment
    * @param {ParseTree} body
    */
-  constructor(location, initialiser, condition, increment, body) {
+  constructor(location, initializer, condition, increment, body) {
     this.location = location;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
     this.condition = condition;
     this.increment = increment;
     this.body = body;
@@ -3110,13 +3110,13 @@ export class VariableDeclaration extends ParseTree {
    * @param {SourceRange} location
    * @param {ParseTree} lvalue
    * @param {ParseTree} typeAnnotation
-   * @param {ParseTree} initialiser
+   * @param {ParseTree} initializer
    */
-  constructor(location, lvalue, typeAnnotation, initialiser) {
+  constructor(location, lvalue, typeAnnotation, initializer) {
     this.location = location;
     this.lvalue = lvalue;
     this.typeAnnotation = typeAnnotation;
-    this.initialiser = initialiser;
+    this.initializer = initializer;
   }
 
   /**
